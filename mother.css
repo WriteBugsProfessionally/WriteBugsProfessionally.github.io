@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    height: 1000px;
+    width: 750px;
+    margin: auto;
+    background-image: url("https://static.codemao.cn/coco/player/unstable/ByfQFESLq.image/jpeg?hash=Fr_mVHvoe51FnD4aP-IcHOZWRVLB");
+    background-repeat: no-repeat;
+    background-size: 750px 1000px;
+    background-position: center;
+    text-align: center;
+    line-height: 50px;
+}
+
+.title {
+    text-align: center;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes example {
+    0% {
+        color: red;
+    }
+    25% {
+        color: yellow;
+    }
+    50% {
+        color: blue;
+    }
+    75% {
+        color: green;
+    }
+    100% {
+        color: red;
+    }
+}
+
+@media(max-width:920px) {
+    div {
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+    }
+}

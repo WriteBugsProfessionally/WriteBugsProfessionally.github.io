@@ -1,0 +1,57 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #000000;
+    width: 100%;
+    height: 100px;
+    color: white;
+    text-align: center;
+}
+
+
+/*对联*/
+
+.d {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 800px;
+}
+
+.a {
+    text-align: center;
+    border-radius: 225px;
+    font-size: 20em;
+    line-height: 450px;
+    display: block;
+    width: 450px;
+    height: 450px;
+}
+
+div.t {
+    margin: auto;
+    text-align: center;
+    font-size: 5em;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.b {
+    border: 5px solid White;
+}
+
+ul {
+    border: 5px solid White;
+    font-size: 8em;
+    list-style: none;
+}
+
+.lz {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 3em;
+}
