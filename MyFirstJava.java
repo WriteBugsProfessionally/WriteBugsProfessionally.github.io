@@ -1,5 +1,96 @@
 package com.WriteBugsProfessionally.Java.Study;
 
+/**
+ Java 简介
+ Java 是由 Sun Microsystems 公司于 1995 年 5 月推出的 Java 面向对象程序设计语言和 Java 平台的总称。由 James Gosling和同事们共同研发，并在 1995 年正式推出。
+
+ 后来 Sun 公司被 Oracle （甲骨文）公司收购，Java 也随之成为 Oracle 公司的产品。
+
+ Java分为三个体系：
+
+ JavaSE（J2SE）（Java2 Platform Standard Edition，java平台标准版）
+ JavaEE(J2EE)(Java 2 Platform,Enterprise Edition，java平台企业版)
+ JavaME(J2ME)(Java 2 Platform Micro Edition，java平台微型版)。
+ 2005 年 6 月，JavaOne 大会召开，SUN 公司公开 Java SE 6。此时，Java 的各种版本已经更名，以取消其中的数字 "2"：J2EE 更名为 Java EE，J2SE 更名为Java SE，J2ME 更名为 Java ME。
+
+ 主要特性
+ Java 语言是简单的：
+
+ Java 语言的语法与 C 语言和 C++ 语言很接近，使得大多数程序员很容易学习和使用。另一方面，Java 丢弃了 C++ 中很少使用的、很难理解的、令人迷惑的那些特性，如操作符重载、多继承、自动的强制类型转换。特别地，Java 语言不使用指针，而是引用。并提供了自动分配和回收内存空间，使得程序员不必为内存管理而担忧。
+
+ Java 语言是面向对象的：
+
+ Java 语言提供类、接口和继承等面向对象的特性，为了简单起见，只支持类之间的单继承，但支持接口之间的多继承，并支持类与接口之间的实现机制（关键字为 implements）。Java 语言全面支持动态绑定，而 C++语言只对虚函数使用动态绑定。总之，Java语言是一个纯的面向对象程序设计语言。
+
+ Java语言是分布式的：
+
+ Java 语言支持 Internet 应用的开发，在基本的 Java 应用编程接口中有一个网络应用编程接口（java net），它提供了用于网络应用编程的类库，包括 URL、URLConnection、Socket、ServerSocket 等。Java 的 RMI（远程方法激活）机制也是开发分布式应用的重要手段。
+
+ Java 语言是健壮的：
+ Java 的强类型机制、异常处理、垃圾的自动收集等是 Java 程序健壮性的重要保证。对指针的丢弃是 Java 的明智选择。Java 的安全检查机制使得 Java 更具健壮性。
+
+ Java语言是安全的：
+
+ Java通常被用在网络环境中，为此，Java 提供了一个安全机制以防恶意代码的攻击。除了Java 语言具有的许多安全特性以外，Java 对通过网络下载的类具有一个安全防范机制（类 ClassLoader），如分配不同的名字空间以防替代本地的同名类、字节代码检查，并提供安全管理机制（类 SecurityManager）让 Java 应用设置安全哨兵。
+
+ Java 语言是体系结构中立的：
+
+ Java 程序（后缀为 java 的文件）在 Java 平台上被编译为体系结构中立的字节码格式（后缀为 class 的文件），然后可以在实现这个 Java 平台的任何系统中运行。这种途径适合于异构的网络环境和软件的分发。
+
+ Java 语言是可移植的：
+
+ 这种可移植性来源于体系结构中立性，另外，Java 还严格规定了各个基本数据类型的长度。Java 系统本身也具有很强的可移植性，Java 编译器是用 Java 实现的，Java 的运行环境是用 ANSI C 实现的。
+
+ Java 语言是解释型的：
+
+ 如前所述，Java 程序在 Java 平台上被编译为字节码格式，然后可以在实现这个 Java 平台的任何系统中运行。在运行时，Java 平台中的 Java 解释器对这些字节码进行解释执行，执行过程中需要的类在联接阶段被载入到运行环境中。
+
+ Java 是高性能的：
+
+ 与那些解释型的高级脚本语言相比，Java 的确是高性能的。事实上，Java 的运行速度随着 JIT(Just-In-Time）编译器技术的发展越来越接近于 C++。
+
+ Java 语言是多线程的：
+
+ 在 Java 语言中，线程是一种特殊的对象，它必须由 Thread 类或其子（孙）类来创建。通常有两种方法来创建线程：其一，使用型构为 Thread(Runnable) 的构造子类将一个实现了 Runnable 接口的对象包装成一个线程，其二，从 Thread 类派生出子类并重写 run 方法，使用该子类创建的对象即为线程。值得注意的是 Thread 类已经实现了 Runnable 接口，因此，任何一个线程均有它的 run 方法，而 run 方法中包含了线程所要运行的代码。线程的活动由一组方法来控制。Java 语言支持多个线程的同时执行，并提供多线程之间的同步机制（关键字为 synchronized）。
+
+ Java 语言是动态的：
+
+ Java 语言的设计目标之一是适应于动态变化的环境。Java 程序需要的类能够动态地被载入到运行环境，也可以通过网络来载入所需要的类。这也有利于软件的升级。另外，Java 中的类有一个运行时刻的表示，能进行运行时刻的类型检查。
+
+ 发展历史
+ 1995 年 5 月 23 日，Java 语言诞生
+ 1996 年 1 月，第一个 JDK-JDK1.0 诞生
+ 1996 年 4 月，10 个最主要的操作系统供应商申明将在其产品中嵌入 JAVA 技术
+ 1996 年 9 月，约 8.3 万个网页应用了 JAVA 技术来制作
+ 1997 年 2 月 18 日，JDK1.1 发布
+ 1997 年 4 月 2 日，JavaOne 会议召开，参与者逾一万人，创当时全球同类会议规模之纪录
+ 1997 年 9 月，JavaDeveloperConnection 社区成员超过十万
+ 1998 年 2 月，JDK1.1 被下载超过 2,000,000次
+ 1998 年 12 月 8 日，JAVA2 企业平台 J2EE 发布
+ 1999 年 6月，SUN 公司发布 Java 的三个版本：标准版（JavaSE, 以前是 J2SE）、企业版（JavaEE 以前是 J2EE）和微型版（JavaME，以前是 J2ME）
+ 2000 年 5 月 8 日，JDK1.3 发布
+ 2000 年 5 月 29 日，JDK1.4 发布
+ 2001 年 6 月 5 日，NOKIA 宣布，到 2003 年将出售 1 亿部支持 Java 的手机
+ 2001 年 9 月 24 日，J2EE1.3 发布
+ 2002 年 2 月 26 日，J2SE1.4 发布，自此 Java 的计算能力有了大幅提升
+ 2004 年 9 月 30 日 18:00PM，J2SE1.5 发布，成为 Java 语言发展史上的又一里程碑。为了表示该版本的重要性，J2SE1.5 更名为 Java SE 5.0
+ 2005 年 6 月，JavaOne 大会召开，SUN 公司公开 Java SE 6。此时，Java 的各种版本已经更名，以取消其中的数字 "2"：J2EE 更名为 Java EE，J2SE 更名为 Java SE，J2ME 更名为 Java ME
+ 2006 年 12 月，SUN 公司发布 JRE6.0
+ 2009 年 04 月 20 日，甲骨文 74 亿美元收购 Sun，取得 Java 的版权。
+ 2010 年 11 月，由于甲骨文对于 Java 社区的不友善，因此 Apache 扬言将退出 JCP。
+ 2011 年 7 月 28 日，甲骨文发布 Java7.0 的正式版。
+ 2014 年 3 月 18 日，Oracle 公司发表 Java SE 8。
+ 2017 年 9 月 21 日，Oracle 公司发表 Java SE 9
+ 2018 年 3 月 21 日，Oracle 公司发表 Java SE 10
+ 2018 年 9 月 25 日，Java SE 11 发布
+ 2019 年 3 月 20 日，Java SE 12 发布
+ Java 开发工具
+ Java 语言尽量保证系统内存在 1G 以上，其他工具如下所示：
+
+ Linux 系统、Mac OS 系统、Windows 95/98/2000/XP，WIN 7/8系统。
+ Java JDK 7、8……
+ vscode 编辑器或者其他编辑器。
+ IDE：Eclipse、 IntelliJ IDEA、NetBeans 等。*/
 //import org.omg.CORBA.Object;
 
 import java.util.*;
@@ -2899,7 +2990,7 @@ class AboutArrays {
 		int[] arraySelectionSort = {23,45,13,99,3,44,55};
 
 		//低级的选择排序，当数组中有6个元素时才能使用
-		getLow_levelArraySelectionSort(arraySelectionSort);
+		getLowLevelArraySelectionSort(arraySelectionSort);
 
 		System.out.println("——————————————————————————");
 
@@ -2980,18 +3071,88 @@ class AboutArrays {
 
 		System.out.println("归并排序：");
 		//原始待排序数组
-		int[] arrayMergeSort = {11,2,26,378,466,38,36,387,37,327,38,58,9,78,88};
+		int[] arrayMergeSort = {12,33,6,44,35,-1,55,45,67,456,567,21,65};
 
 		//拆分
-		getArraySplit(arrayMergeSort,0,array.length-1);
+		getArraySplit(arrayMergeSort,0,arrayMergeSort.length-1);
 
 		//归并
-		//getArrayMerge(arrayMergeSort,0,arrayMergeSort.length/2-1,arrayMergeSort.length-1);
+		getArrayMerge(arrayMergeSort,0,arrayMergeSort.length/2-1,arrayMergeSort.length-1);
 
 		//输出原数组：
 		System.out.println(Arrays.toString(arrayMergeSort));
 
+		System.out.println("———————————————————————————————————————————");
 
+		//基数排序
+		/*
+		* 基数排序不同于之前的排序基数排序不需要进行对关键字的比较，只需要对关键字进行“分配”与收集两种操作来完成
+		* 先比较个位数的大小，再比较十位数的大小，直到最高位
+		*
+		* */
+		System.out.println("基数排序：");
+		int[] arrayCardinalitySorting = {-33,-4,-23,236,477,46,58,887,64,645,4838,68,69,647,6768,99999,7777,100000};
+		int[] otherArrayCardinalitySorting = {56,766,8676,98,236,477,46,58,887,64,645,4838,68,69,647,6768,99999,7777};
+		int[] A=new int[]{73,22, 93, 43, 55, 14, 28, 65, 39, 81};
+		radixSort(A, 100);
+		System.out.println(Arrays.toString(A));
+		for (int num:A) {
+			System.out.print(num+"\t");
+		}
+		System.out.println();
+		getArrayCardinalitySorting(A);
+		System.out.println(Arrays.toString(A));
+
+		//捕捉异常
+		try {
+			getArrayCardinalitySorting(arrayCardinalitySorting);
+		}catch (Throwable throwable){
+			System.out.println("数组中不能含有负数！");
+			//System.out.println(Arrays.toString(arrayCardinalitySorting));
+		}
+
+		try {
+			getArrayCardinalitySorting(otherArrayCardinalitySorting);
+		}catch (Throwable throwable){
+			System.out.println("数组中数字个位不为0！");
+			//System.out.println(Arrays.toString(otherArrayCardinalitySorting));
+		}
+
+		System.out.println("———————————————————————————————————————————");
+		//堆排序
+		/*
+		* 堆排序
+		* 堆排序是利用堆这种数据结构而设计的一种排序算法，堆排序是一种选择排序。
+		* 堆排序的基本思想是：
+		* 1.将待排序序列构造成一个大顶堆，此时，整个序列的最大值就是堆顶的根节点
+		* 2.将其与末尾元素进行交换，此时末尾就为最大值。
+		* 3.然后将剩余n-1个元素重新构造成一个堆，这样会得到n个元素的次小值。
+		* 4.如此反复执行，便能得到一个有序序列了.
+		* 大顶堆：根节点大于所有子节点
+		* 小顶堆：根节点小于所有子节点
+		* 升序排列用大顶堆
+		* 降序排列用小顶堆
+		* （顶堆是由完全二叉树转化来的，转成大顶堆，从最后一个非叶子节点开始）
+		* */
+		System.out.println("堆排序：");
+		int[] heapSortingArray = {0,32,776,34,88,232,7878,55,45};
+		//定义开始调整的位置
+		int startIndex = (heapSortingArray.length-1)/2;
+		//循环开始调用
+		for (int j = startIndex; j >= 0; j--) {
+			toMaxHeap(heapSortingArray,heapSortingArray.length,j);
+		}
+		System.out.println(Arrays.toString(heapSortingArray));
+		//此时数组是大顶堆，把根元素和最后一个元素进行交换
+		for (int j = heapSortingArray.length-1; j < 0; j--) {
+			//进行调换
+			int var = heapSortingArray[0];
+			heapSortingArray[0] = heapSortingArray[j];
+			heapSortingArray[j] = var;
+			//还完之后再把数组调成大顶堆
+			toMaxHeap(heapSortingArray,j,0);
+		}
+		System.out.println(Arrays.toString(heapSortingArray));
 
 		System.out.println("——————————————————————————————————————————————————————————————————————————————————————");
 		return new AboutArrays();
@@ -3028,6 +3189,17 @@ class AboutArrays {
 				System.out.print(a[i]+", ");
 			}
 		}
+	}
+
+	//获取数组的最大元素
+	public static int getsTheLargestElementOfTheArray(int[] array){
+		int max = array[0];
+		for (int i = 1; i < array.length; i++) {
+			if (array[i] > max){
+				max = array[i];
+			}
+		}
+		return max;
 	}
 
 	//稀疏数组
@@ -3168,7 +3340,7 @@ class AboutArrays {
 		return -1;
 	}
 	//低级选择排序
-	public static void getLow_levelArraySelectionSort(int[] arraySelectionSort){
+	public static void getLowLevelArraySelectionSort(int[] arraySelectionSort){
 		//第一轮比较（从0索引处比较）
 		int arraySelectionSortIndex = 0;
 		for (int j = 1; j < arraySelectionSort.length; j++) {
@@ -3459,7 +3631,7 @@ class AboutArrays {
 		//定义临时数组的起始索引
 		int temporaryArrayMergeSortStartIndex = 0;
 		//比较左右两个数组的元素大小，往临时数组里放
-		while (leftStartArrayMergeSortIndex <= arrayMergeSortCenterIndex && rightStartArrayMergeSortIndex<=arrayMergeSortEndIndex){
+		while (leftStartArrayMergeSortIndex <= arrayMergeSortCenterIndex && rightStartArrayMergeSortIndex <= arrayMergeSortEndIndex){
 			if (arrayMergeSort[leftStartArrayMergeSortIndex] <= arrayMergeSort[rightStartArrayMergeSortIndex]) {
 				temporaryArrayMergeSort[temporaryArrayMergeSortStartIndex] = arrayMergeSort[leftStartArrayMergeSortIndex];
 				leftStartArrayMergeSortIndex++;
@@ -3482,13 +3654,149 @@ class AboutArrays {
 			rightStartArrayMergeSortIndex++;
 			temporaryArrayMergeSortStartIndex++;
 		}
-		//System.out.println(Arrays.toString(temporaryArrayMergeSort));
+
 		//将临时数组中的元素取回原数组中
 		for (int i = 0; i < temporaryArrayMergeSort.length; i++) {
 			arrayMergeSort[i + arrayMergeSortStartIndex] = temporaryArrayMergeSort[i];
 		}
+		//System.out.println("将原始数组排成有序的：");
+		//System.out.println(Arrays.toString(temporaryArrayMergeSort));
 	}
 
+
+	//基数排序(桶排序)
+	public static void getArrayCardinalitySorting(int[] arrayCardinalitySorting){
+		if (arrayCardinalitySorting == null || arrayCardinalitySorting.length <= 1){
+			return;
+		}
+		int max = arrayCardinalitySorting[0];
+		for (int i = 0; i < arrayCardinalitySorting.length; i++) {
+			if (arrayCardinalitySorting[i] > max){
+				max = arrayCardinalitySorting[i];
+			}
+		}
+
+		//定义一个二维数组，获取10个容器（桶）
+		int[][] temporaryArrayCardinalitySorting = new int[10][arrayCardinalitySorting.length];
+		//定义统计数组
+		int[] temporaryStatisticsArray = new int[10];
+		//获取数组的最大值
+		int maxLength=(max+"").length();//得到数组最大值的位数，max+""将整型max转为字符串再利用字符串求长度方法length求max的位数
+		//int arrayCardinalitySortingMax = getsTheLargestElementOfTheArray(arrayCardinalitySorting);
+		//确定排序轮次
+		//int sortTheRounds = String.valueOf(arrayCardinalitySortingMax).length();
+
+		for (int j = 0,variation = 1; j < maxLength; j++,variation*=10) {
+			for (int l = 0; l < arrayCardinalitySorting.length; l++) {
+				//获取每个位上的数字
+				int getArrayBit = arrayCardinalitySorting[l]/variation%10;
+				//放到临时数组里
+				temporaryArrayCardinalitySorting[getArrayBit][temporaryStatisticsArray[getArrayBit]] = arrayCardinalitySorting[l];
+				temporaryStatisticsArray[getArrayBit]++;
+			}
+			//取出容器里的元素
+			int index = 0;
+			for (int k = 0; k < temporaryStatisticsArray.length; k++) {
+				//判断是否为空元素
+				if (temporaryStatisticsArray[k] != 0){
+					//遍历数组
+					for (int h = 0; h < temporaryStatisticsArray[k]; h++) {
+						//从容器中取出元素放回原数组
+						arrayCardinalitySorting[index++] = temporaryArrayCardinalitySorting[k][h];
+					}
+					temporaryStatisticsArray[k] = 0;//清除上一次统计的个数
+				}
+			}
+		}
+	}
+
+
+
+	public static void radixSort(int[] array,int d) {
+		int n=1;//代表位数对应的数：1,10,100...
+		int k=0;//保存每一位排序后的结果用于下一位的排序输入
+		int length=array.length;
+		int[][] bucket=new int[10][length];//排序桶用于保存每次排序后的结果，这一位上排序结果相同的数字放在同一个桶里
+		int[] order=new int[length];//用于保存每个桶里有多少个数字
+		while(n<d)
+		{
+			for(int num:array) //将数组array里的每个数字放在相应的桶里
+			{
+				int digit=(num/n)%10;
+				bucket[digit][order[digit]]=num;
+				order[digit]++;
+			}
+			for(int i=0;i<length;i++)//将前一个循环生成的桶里的数据覆盖到原数组中用于保存这一位的排序结果
+			{
+				if(order[i]!=0)//这个桶里有数据，从上到下遍历这个桶并将数据保存到原数组中
+				{
+					for(int j=0;j<order[i];j++)
+					{
+						array[k]=bucket[i][j];
+						k++;
+					}
+				}
+				order[i]=0;//将桶里计数器置0，用于下一次位排序
+			}
+			n*=10;
+			k=0;//将k置0，用于下一轮保存位排序结果
+		}
+	}
+
+	public static void otherRadixSort(int[] arr) {
+		int max=arr[0];
+		for(int i=1;i<arr.length;i++) {
+			if(arr[i]>max) {
+				max=arr[i];
+			}
+		}
+		int maxLength=(max+"").length();//得到数组最大值的位数，max+""将整型max转为字符串再利用字符串求长度方法length求max的位数
+		int[][] bucket=new int[10][arr.length];//此处10表示10个桶分别为0~9
+		int[] bucketElemCount=new int [10];//为了记录每个桶中，实际存放了多少个数据,我们定义一个一维数组来记录各个桶的每次放入的数据个数,比如：bucketElemCount[0],记录的就是bucket[0] 桶的放入数据个数
+		for(int i=0,n=1;i<maxLength;i++,n*=10){// n=1 表示处理个位，n=10表示处理十位，n=100表示处理百位 ......
+			for(int j=0;j<arr.length;j++) {
+				int digit=arr[j]/n%10;//取出每个元素的对应位的值
+				bucket[digit][bucketElemCount[digit]]=arr[j];//放入到对应的桶中
+				bucketElemCount[digit]++;
+			}
+			int index=0;
+			for(int k=0;k<bucketElemCount.length;k++) {//遍历每一桶，并将桶中的数据，放入到原数组
+				for(int l=0;l<bucketElemCount[k];l++) {
+					arr[index++]=bucket[k][l];
+				}
+				bucketElemCount[k]=0;//第i+1轮处理后，需要将每个 bucketElementCounts[k] = 0 即桶中数据置空方便下次使用
+			}
+		}
+	}
+
+	/**
+	 *
+	 * @param heapSortingArray 要排序的数组
+	 * @param size 调整的元素个数
+	 * @param index 从哪里开始调整
+	 */
+	//堆排序
+	public static void toMaxHeap(int[] heapSortingArray,int size,int index){
+		//获取左右子节点的索引
+		int leftNodeIndex = index*2+1;//左节点
+		int rightNodeIndex = index*2+2;//右节点
+		//查找最大节点所对应的节点
+		int maxIndex = index;
+		if (leftNodeIndex < size && heapSortingArray[leftNodeIndex] > heapSortingArray[maxIndex]) {
+			maxIndex = leftNodeIndex;
+		}
+		if (rightNodeIndex < size && heapSortingArray[rightNodeIndex] < heapSortingArray[maxIndex]){
+			maxIndex = rightNodeIndex;
+		}
+		//调换位置
+		if (maxIndex != index){
+			int var = heapSortingArray[maxIndex];
+			heapSortingArray[maxIndex] = heapSortingArray[index];
+			heapSortingArray[index] = var;
+			//调换完之后，可能会影响到下面的子树不是大顶堆，还需要再次调换
+			toMaxHeap(heapSortingArray,size,maxIndex);
+		}
+	}
 }
 
 
