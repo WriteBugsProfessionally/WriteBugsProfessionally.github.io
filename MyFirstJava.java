@@ -1310,7 +1310,7 @@ public class MyFirstJava {
 
 		AboutObject.aboutObject();
 
-		Ninth.ninth();
+		AboutClass.ninth();
 
 		Human.human();
 
@@ -3094,29 +3094,28 @@ class AboutArrays {
 		int[] arrayCardinalitySorting = {-33,-4,-23,236,477,46,58,887,64,645,4838,68,69,647,6768,99999,7777,100000};
 		int[] otherArrayCardinalitySorting = {56,766,8676,98,236,477,46,58,887,64,645,4838,68,69,647,6768,99999,7777};
 		int[] A=new int[]{73,22, 93, 43, 55, 14, 28, 65, 39, 81};
+		getArrayCardinalitySorting(A);
+		System.out.println(Arrays.toString(A));
 		radixSort(A, 100);
 		System.out.println(Arrays.toString(A));
 		for (int num:A) {
 			System.out.print(num+"\t");
 		}
 		System.out.println();
-		getArrayCardinalitySorting(A);
-		System.out.println(Arrays.toString(A));
+
+
 
 		//捕捉异常
 		try {
 			getArrayCardinalitySorting(arrayCardinalitySorting);
+			getArrayCardinalitySorting(otherArrayCardinalitySorting);
+			otherRadixSort(arrayCardinalitySorting);
 		}catch (Throwable throwable){
-			System.out.println("数组中不能含有负数！");
+			System.out.println("错误！");
+			//System.out.println(Arrays.toString(arrayCardinalitySorting));
 			//System.out.println(Arrays.toString(arrayCardinalitySorting));
 		}
 
-		try {
-			getArrayCardinalitySorting(otherArrayCardinalitySorting);
-		}catch (Throwable throwable){
-			System.out.println("数组中数字个位不为0！");
-			//System.out.println(Arrays.toString(otherArrayCardinalitySorting));
-		}
 
 		System.out.println("———————————————————————————————————————————");
 		//堆排序
@@ -4000,7 +3999,7 @@ class AboutObject {
 	}
 }
 
-class Ninth {
+class AboutClass {
 	//一个类即使什么都不写，他也会存在一个方法
 	//显示的定义构造器
 
@@ -4012,27 +4011,27 @@ class Ninth {
 	//2.一般用来初始化值
 
 	//无参构造
-	public Ninth(){
+	public AboutClass(){
 		this.name = "qing";
 		this.age = 14;
 	}
 
 	//有参构造:一旦定义了有参构造，无参就必须显示定义
-	public Ninth(String name,int age){
+	public AboutClass(String name, int age){
 		//this.name是上面类本身的，后面的name是方法的参数
 		this.name = name;
 		this.age = age;
 	}
-	public static Ninth ninth(){
+	public static AboutClass ninth(){
 		//new 实例化了一个对象
-		Ninth introduce = new Ninth();
-		Ninth introduceOne = new Ninth("qing",25);
+		AboutClass introduce = new AboutClass();
+		AboutClass introduceOne = new AboutClass("qing",25);
 		System.out.println("姓名："+introduce.name);
 		System.out.println("年龄："+introduce.age);
 		System.out.println("姓名："+introduceOne.name);
 		System.out.println("年龄："+introduceOne.age);
 
-		return new Ninth();
+		return new AboutClass();
 	}
 }
 //父类（基类）
@@ -4525,7 +4524,7 @@ class InterfaceImpl implements Interface,Timer{
 		interfaceImpl.timer();
 		interfaceImpl.update("update");
 
-
+		System.out.println("————————————————————————————————————————————————————————————————————————————————————————————————");
 		return interfaceImpl;
 	}
 
@@ -4589,7 +4588,9 @@ class InterfaceImpl implements Interface,Timer{
 
 
 class Outer{
-	//外部类
+
+
+//外部类
 /*
 内部类
 内部类就是在一个类的内部在定义一个类，比如，A类中定义一个B类，那么B类相对A类来说就称为内部类，而A类相对B类来说就是外部类了。
@@ -4598,21 +4599,38 @@ class Outer{
 3.局部内部类
 4.匿名内部类
 */
-	private int id;
-	private static int staticId;
 
 	public static Outer outer(){
+		System.out.println("内部类：");
+		//内部类
+		/*
+		* 在一个类的内部再定义一个类
+		* 编译之后有独立的字节码文件
+		* 内部类可以直接访问外部类的私有成员，而不破坏封装
+		* 可以为外部类提供一些内部的功能组件
+		* */
 		Outer outer = new Outer();
 		//通过外部类实例化内部类
 		Outer.MemberInnerClass memberInnerClass = outer.new MemberInnerClass();
-		Outer.StaticInnerClass staticInnerClass = new StaticInnerClass();
+
+		MemberInnerClass memberInnerClass1 = new Outer().new MemberInnerClass();
+		memberInnerClass1.in();
 		memberInnerClass.in();
+		System.out.println(outer.id);
 		memberInnerClass.getID();
-		staticInnerClass.in();
-		staticInnerClass.getID();
+
 		outer.method();
 		//没有名字初始化类，不用将实例保存到变量中(匿名类)
 		new OuterClassTest().run();
+
+
+		//直接创建静态内部类对象
+		Outer.StaticInnerClass staticInnerClass = new Outer.StaticInnerClass();
+		Outer.StaticInnerClass staticInnerClass1 = new StaticInnerClass();
+		//调用静态内部类的方法
+		staticInnerClass.in();
+		staticInnerClass1.getID();
+
 
 		System.out.println("————————————————————————————————————————————————");
 
@@ -4632,13 +4650,33 @@ class Outer{
 	}
 
 	public void out(){
-		System.out.println("外部类的方法");
+		System.out.println("外部类的方法!");
 	}
 
+	private int id;
+	private static int staticId;
+
+	private String name;
 	//成员内部类
 	public class MemberInnerClass {
+		/* 成员内部类
+		 * 在类的内部定义，与实例变量，实例方法同级别的类
+		 * 外部类的一个实例部分，创建内部类对象时，必须依赖外部类对象
+		 * 当外部类和内部类存在同名属性时，会优先访问内部类属性
+		 * 成员内部类不能定义静态属性
+		 * */
+		int id = 278127;
+		String name = "name";
+
+		//不能定义静态成员
+		//private static int age;
+		//可以定义静态常量(Java16+,Java8不行)
+		//private static final int num;
+
 		public void in(){
-			System.out.println("内部类的方法");
+			//内部类的属性名和外部类相同,如果要调用外部类的属性需要在前面加上一个    外部类名.this.
+			System.out.println(Outer.this.name);//调用外部类的属性
+			System.out.println("内部类的方法!");
 		}
 
 		//获得外部类的私有属性
@@ -4648,10 +4686,34 @@ class Outer{
 
 	}
 
+
+
+	private String staticInnerClassName = "静态内部类name";
+	private int staticInnerClassAge = 19;
 	//静态内部类
 	public static class StaticInnerClass{
+		/*静态内部类（相当于一个外部类）
+		* 不依赖外部类对象，可以直接创建或通过类名访问，可以声明静态成员
+		* 与外部类同级别
+		* 只有内部类才能是静态的，一般的类不是静态的
+		* */
+
+		private String address = "地区";
+		private int age = 18;
+		//静态成员
+		private static char gender = '男';
 		public void in(){
-			System.out.println("静态内部类");
+			System.out.println("静态内部类!");
+			//创建内部类对象
+			Outer outer = new Outer();
+			//调用外部类对象的属性
+			System.out.println(outer.staticInnerClassName);
+			System.out.println(outer.staticInnerClassAge);
+			//调用静态内部类的属性和方法
+			System.out.println(address);
+			System.out.println(age);
+			//调用静态内部类的静态属性和方法
+			System.out.println(StaticInnerClass.gender);
 		}
 
 		public void getID(){
@@ -4661,15 +4723,51 @@ class Outer{
 
 	}
 
+	private String partInnerClassName = "泙";
+	private int partInnerClassAge = 15;
+
+	//局部内部类
 	public void method(){
-		//局部内部类
+		/*局部内部类
+		* 定义在外部类的方法中，作用范围和创建对象仅限于当前方法
+		* */
+
+		//定义局部变量
+		String address = "关嘉";
+		//局部内部类，同局部变量一样，不能有任何访问修饰符
 		class PartInnerClass{
-			public void in(){
-				System.out.println("局部内部类");
+			//局部内部类的局部属性
+			private int age = 16;
+			private char gender = '女';
+			public void partIn(){
+				System.out.println("局部内部类!");
+				//访问外部类的属性（可以直接访问，因为它和局部变量同级别）
+				System.out.println(partInnerClassName);
+				System.out.println(partInnerClassAge);
 			}
 		}
 		PartInnerClass partInnerClass = new PartInnerClass();
-		partInnerClass.in();
+		partInnerClass.partIn();
+	}
+
+	public static void encliticMethod(){
+		//定义局部变量
+		String address = "关嘉";
+		//局部内部类，同局部变量一样，不能有任何访问修饰符
+		class PartInnerClass{
+			//局部内部类的局部属性
+			private int age = 16;
+			private char gender = '女';
+			public void partIn(){
+				System.out.println("局部内部类!");
+				//访问外部类的属性（可以直接访问，因为它和局部变量同级别;静态方法需要实例化外部类）
+				Outer outer = new Outer();
+				System.out.println(outer.partInnerClassName);
+				System.out.println(outer.partInnerClassAge);
+			}
+		}
+		PartInnerClass partInnerClass = new PartInnerClass();
+		partInnerClass.partIn();
 	}
 
 }
@@ -6087,7 +6185,6 @@ class LeetCodeTow {
 		return head;
 	}
 }
-
 class LeetCodeTowListNode {
 	public int val;
 	public LeetCodeTowListNode next;
