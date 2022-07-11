@@ -1308,7 +1308,7 @@ public class MyFirstJava {
 
 		AboutArrays.aboutArrays();
 
-		AboutObject.aboutObject();
+		ObjectOriented.ObjectOriented();
 
 		AboutClass.ninth();
 
@@ -1371,6 +1371,14 @@ public class MyFirstJava {
 		TestGregorianCalendar.testGregorianCalendar();
 
 		TestRegularExpression.testRegularExpression();
+
+		AboutObject.aboutObject();
+
+		JavaGenerics.javaGenerics();
+
+		JavaGenericsClass.javaGenericsClass();
+
+		//TestObjectMethod.
 	}
 	public void run(){
 		System.out.println("mainRun");
@@ -1380,6 +1388,14 @@ public class MyFirstJava {
 		System.out.println("mainGo");
 	}
 
+	//重写finalize()方法
+	/**
+	 * @throws Throwable
+	 */
+	@Override
+	protected void finalize() throws Throwable {
+		System.out.println(this.name+"垃圾对象已被回收！");
+	}
 
 }
 
@@ -3799,7 +3815,7 @@ class AboutArrays {
 }
 
 
-class AboutObject {
+class ObjectOriented {
 	//面向对象&面向过程
 	/*面向过程思想：（线性思维）
 	 * 步骤清晰简单，第一步做什么，第二步做什么······
@@ -3909,14 +3925,14 @@ class AboutObject {
 
 
 
-	public static AboutObject aboutObject() {
+	public static ObjectOriented ObjectOriented() {
 		System.out.println("面向对象：");
 		//类，抽象的，实例化
 
 		//类实例化后回返回一个自己的对象
 		//study对象就是AboutObject类的具体实例
-		AboutObject study = new AboutObject();
-		AboutObject studyOne = new AboutObject();
+		ObjectOriented study = new ObjectOriented();
+		ObjectOriented studyOne = new ObjectOriented();
 
 		study.name = "Amy";
 		study.age = 12;
@@ -3932,7 +3948,7 @@ class AboutObject {
 
 		System.out.println("———————————————————————————————————————————");
 
-		AboutObject pet = new AboutObject();
+		ObjectOriented pet = new ObjectOriented();
 		pet.petName = "明";
 		pet.petAge = 6;
 		System.out.println("宠物名："+pet.petName);
@@ -3958,7 +3974,7 @@ class AboutObject {
 		 * 4.增加系统可维护性
 		 * */
 
-		AboutObject studentOne = new AboutObject();
+		ObjectOriented studentOne = new ObjectOriented();
 		studentOne.getStudentName();
 		studentOne.setStudentName("凌");
 		studentOne.setStudentGender('男');
@@ -3971,7 +3987,7 @@ class AboutObject {
 
 		System.out.println("—————————————————————");
 
-		AboutObject studentTwo = new AboutObject();
+		ObjectOriented studentTwo = new ObjectOriented();
 		studentTwo.getStudentName();
 		studentTwo.setStudentName("暎");
 		studentTwo.setStudentGender('女');
@@ -3984,7 +4000,7 @@ class AboutObject {
 
 		System.out.println("———————————————————————————————————————————");
 
-		return new AboutObject();
+		return new ObjectOriented();
 
 	}
 
@@ -4620,9 +4636,9 @@ class Outer{
 		memberInnerClass.getID();
 
 		outer.method();
-		//没有名字初始化类，不用将实例保存到变量中(匿名类)
-		new OuterClassTest().run();
 
+
+		System.out.println("————————————————————————————————————————————————");
 
 		//直接创建静态内部类对象
 		Outer.StaticInnerClass staticInnerClass = new Outer.StaticInnerClass();
@@ -4631,26 +4647,82 @@ class Outer{
 		staticInnerClass.in();
 		staticInnerClass1.getID();
 
+		System.out.println("————————————————————————————————————————————————");
+
+		//局部内部类的调用，先实例化外部类对象
+		Outer partInnerOfOuter = new Outer();
+		partInnerOfOuter.method();
 
 		System.out.println("————————————————————————————————————————————————");
 
-		OuterInterface outerInterface = new OuterInterface(){
+		//匿名内部类
+		/*没有类名的局部内部类（一切特征与内部类相同）
+		* 必须继承一个父类或者实现一个接口
+		* 定义类、实现类、创建对象和语法合并，只能创建一个该类的对象
+		* 优点：减少代码量
+		* 缺点：可读性较差
+		* */
+
+
+
+		//创建接口类型的属性
+		//有名字初始化类，不用将实例保存到变量中(匿名类)
+		OuterInterface outerInterfaceTest = new OuterClassTest();
+		outerInterfaceTest.test();
+		//outerInterfaceTest.run();
+
+		new OuterClassTest().run();
+
+
+		//实现接口的局部内部类
+		class InnerClass implements OuterInterface{
 
 			/**
 			 *
 			 */
 			@Override
 			public void test() {
+				System.out.println("AnonymousInner");
+				System.out.println("实现接口的局部内部类");
+			}
+		}
+		OuterInterface outerInterfaceAnonymousPart = new OuterClassTest();
+		outerInterfaceAnonymousPart.test();
+
+		//用匿名内部类优化（相当于创建了一个局部内部类）
+		OuterInterface outerInterface = new OuterInterface(){
+
+			//实现接口
+			/**
+			 *
+			 */
+			@Override
+			public void test() {
 				System.out.println("OuterInterfaceTest");
+				System.out.println("匿名内部类实现接口");
 			}
 
 		};
+		outerInterface.test();
 
+		OuterSonClass outerSon = new OuterSonClass(){
+			@Override
+			public void outerSonClass() {
+				super.outerSonClass();
+				System.out.println("匿名内部类继承父类");
+				OuterSonClass outerSonClass = new OuterSonClass();
+				outerSonClass.outerSonClass();
+			}
+		};
+		outerSon.outerSonClass();
+
+		System.out.println("————————————————————————————————————————————————");
 		return outer;
 	}
 
 	public void out(){
 		System.out.println("外部类的方法!");
+		System.out.println(this.id);
 	}
 
 	private int id;
@@ -4730,10 +4802,13 @@ class Outer{
 	public void method(){
 		/*局部内部类
 		* 定义在外部类的方法中，作用范围和创建对象仅限于当前方法
+		* 局部内部类访问外部类当前方法中的局部属性时，因无法保证属性的生命周期与自身相同，属性必须修饰为final
 		* */
 
-		//定义局部变量
+		//定义局部属性
 		String address = "关嘉";
+		final int height = 168;
+
 		//局部内部类，同局部变量一样，不能有任何访问修饰符
 		class PartInnerClass{
 			//局部内部类的局部属性
@@ -4742,8 +4817,19 @@ class Outer{
 			public void partIn(){
 				System.out.println("局部内部类!");
 				//访问外部类的属性（可以直接访问，因为它和局部变量同级别）
-				System.out.println(partInnerClassName);
+				System.out.println(Outer.this.partInnerClassName);
 				System.out.println(partInnerClassAge);
+				System.out.println("—————————————————————————");
+				//调用方法
+				encliticMethod();
+				System.out.println("—————————————————————————");
+				//访问内部类的属性
+				System.out.println(this.age);
+				System.out.println(gender);
+				//访问方法里的局部属性；jdk1.7要求局部属性必须是常量,1.8之后不用，自动就是常量（不能修改）
+				System.out.println(address);
+				System.out.println(height);
+
 			}
 		}
 		PartInnerClass partInnerClass = new PartInnerClass();
@@ -4758,23 +4844,47 @@ class Outer{
 			//局部内部类的局部属性
 			private int age = 16;
 			private char gender = '女';
+			//不能定义静态属性
+			//private static int weight = 48;
+
+			//可以定义静态常量
+			private final static int weight = 48;
 			public void partIn(){
 				System.out.println("局部内部类!");
-				//访问外部类的属性（可以直接访问，因为它和局部变量同级别;静态方法需要实例化外部类）
+				//访问外部类的属性（可以直接访问，因为它和局部变量同级别;静态方法需要实例化外部类）因为局部是行执行完会消失，但是对象不会在堆里消失
 				Outer outer = new Outer();
 				System.out.println(outer.partInnerClassName);
 				System.out.println(outer.partInnerClassAge);
 			}
 		}
+		//创建局部内部类对象
 		PartInnerClass partInnerClass = new PartInnerClass();
 		partInnerClass.partIn();
 	}
 
 }
 
-class OuterClassTest{
+class OuterSonClass extends Outer{
+	public OuterSonClass() {
+	}
+
+	public void outerSonClass(){
+		System.out.println("继承父类的匿名内部类");
+	}
+}
+
+
+class OuterClassTest implements OuterInterface{
 	public void run(){
 		System.out.println("run");
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void test() {
+		System.out.println("Test");
 	}
 }
 
@@ -5131,6 +5241,456 @@ class TestMyException{
 	}
 
 }
+
+class AboutObject{
+/*
+Object类
+超类、基类，所有的类都直接或者间接继承Object类，为于继承树的最顶层
+任何类，如果没有写extends显示继承某个类，则都默认直接继承Object类，否则为间接继承
+Object类中所定义的方法，是所有对象都具备的方法
+Object类型可以存储任何对象
+   1.作为参数，可以接受任何对象
+   2.作为返回值，可以返回任何对象
+
+类的构造函数
+Object()
+构造一个新对象。
+
+类的方法
+
+1	protected Object clone()
+创建并返回一个对象的拷贝
+
+2	boolean equals(Object obj)
+比较两个对象是否相等
+
+3	protected void finalize()
+当 GC (垃圾回收器)确定不存在对该对象的有更多引用时，由对象的垃圾回收器调用此方法。
+
+4	Class<?> getClass()
+获取对象的运行时对象的类
+
+5	int hashCode()
+获取对象的 hash 值
+
+6	void notify()
+唤醒在该对象上等待的某个线程
+
+7	void notifyAll()
+唤醒在该对象上等待的所有线程
+
+8	String toString()
+返回对象的字符串表示形式
+
+9	void wait()
+让当前线程进入等待状态。直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法。
+
+10	void wait(long timeout)
+让当前线程处于等待(阻塞)状态，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法，或者超过参数设置的timeout超时时间。
+
+11	void wait(long timeout, int nanos)
+与 wait(long timeout) 方法类似，多了一个 nanos 参数，这个参数表示额外时间（以纳秒为单位，范围是 0-999999）。 所以超时的时间还需要加上 nanos 纳秒。。
+* */
+	public static AboutObject aboutObject(){
+		//getClass()方法
+		/*
+		* public final Class<?> getClass(){}
+		* 返回引用中存储的实际对象类型
+		* 应用：通常用于判断两个引用中的实际存储对象类型是否一致
+		* */
+		TestObjectMethod testObjectMethod = new TestObjectMethod("椿",18);
+		TestObjectMethod testObjectMethod1 = new TestObjectMethod("槎",19);
+		//判断testGetClass和testGetClass1是不是同一个类型
+		Class<? extends TestObjectMethod> class1 = testObjectMethod.getClass();
+		Class<? extends TestObjectMethod> class2 = testObjectMethod1.getClass();
+
+		if (class1 == class2){
+			System.out.println("属于同一类型");
+		}else {
+			System.out.println("不属于同一个类型");
+		}
+
+		System.out.println("————————————————————————————————————————————————");
+
+		//hashCode()方法
+		/*
+		* public int hashCode(){}
+		* 返回该对象的哈希码值
+		* 哈希值根据对象生成的地址、字符串或数字用hash算法计算出来的int类型的数值
+		* 一般情况下相同对象返回相同的哈希码值
+		* */
+		System.out.println(testObjectMethod.hashCode());
+		System.out.println(testObjectMethod1.hashCode());
+
+		TestObjectMethod testObjectMethod2 = testObjectMethod;
+		System.out.println(testObjectMethod2.hashCode());
+
+		System.out.println("————————————————————————————————————————————————");
+
+		//toString()方法
+		/*
+		* public String toString(){}
+		* 返回该对象的字符串表示（表现形式）
+		* 可以根据程序需求覆盖该方法，如：展示对象各个属性值
+		* */
+
+		//原始的toString方法
+		//com.WriteBugsProfessionally.Java.Study.TestObjectMethod@2b193f2d
+		//com.WriteBugsProfessionally.Java.Study.TestObjectMethod@355da254
+
+		//重写的toString方法
+		/*
+		public String toString(){
+		    return name+":"+age;
+	    }
+	    */
+		//椿:18
+		//槎:19
+
+
+		//系统生成的toString方法
+		System.out.println(testObjectMethod.toString());
+		System.out.println(testObjectMethod1.toString());
+
+
+		System.out.println("————————————————————————————————————————————————");
+
+		//equals()方法:判断两个对象是否相等
+		/*
+		* public boolean equals(Object obj){}
+		* 默认实现为(this == obj),比较两个对象地址是否相同
+		* 可进行覆盖，比较两个对象的内容是否相同
+		* */
+
+		System.out.println(testObjectMethod.equals(testObjectMethod1));//false
+		System.out.println(testObjectMethod.equals(testObjectMethod2));//ture
+
+		TestObjectMethod testObjectMethod3 = new TestObjectMethod("莞",21);
+		TestObjectMethod testObjectMethod4 = new TestObjectMethod("莞",21);
+		System.out.println(testObjectMethod3.equals(testObjectMethod4));
+
+		System.out.println("————————————————————————————————————————————————");
+
+		//finalize()方法
+		/*
+		* 当对象被判定为垃圾对象时，由JVM自动调用此方法，用以标记垃圾对象，进入回收队列
+		* 垃圾对象：没有有效引用指向此对象，为垃圾对象
+		* 垃圾回收：由GC销毁垃圾对象，释放数据存储空间
+		* 自动回收机制：JVM的内存耗尽，一次性回收所有垃圾对象
+		* 手动回收机制：使用System.gc();通知JVM执行垃圾回收
+		* */
+
+		TestObjectMethod testObjectMethodAboutFinalize1 = new TestObjectMethod("菏",15);
+		TestObjectMethod testObjectMethodAboutFinalize2 = new TestObjectMethod("洺",18);
+		TestObjectMethod testObjectMethodAboutFinalize3 = new TestObjectMethod("苧",16);
+		TestObjectMethod testObjectMethodAboutFinalize4 = new TestObjectMethod("柏",23);
+		TestObjectMethod testObjectMethodAboutFinalize5 = new TestObjectMethod("晶",17);
+
+		new TestObjectMethod("菏",15);
+		new TestObjectMethod("洺",18);
+		new TestObjectMethod("苧",16);
+		new TestObjectMethod("柏",23);
+		new TestObjectMethod("晶",17);
+		//回收垃圾对象
+		System.gc();
+		System.out.println("垃圾回收");
+
+		System.out.println("————————————————————————————————————————————————");
+		return new AboutObject();
+	}
+
+}
+class TestObjectMethod {
+	private String name;
+	public int age;
+
+	public TestObjectMethod(){
+
+	}
+	public TestObjectMethod(String name, int age){
+		super();
+		this.name = name;
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "TestObjectMethod{" + "name='" + name + '\'' + ", age=" + age + '}';
+	}
+
+//	public String toString(){
+//		return name+":"+age;
+//	}
+
+	/*
+	* equals()方法覆盖步骤
+	* 比较两个引用是否指向同一个对象
+	* 判断obj是否为null
+	* 判断两个引用指向的实际对象类型是否一致
+	* 强制转换类型
+	* 依次比较各个属性值是否相同
+	* */
+
+	@Override
+	public boolean equals(Object obj) {
+		//判断两个对象是否是同一个引用
+		if (this == obj){
+			return true;
+		}
+
+		//判断obj是否为null
+		if (obj == null) {
+			return false;
+		}
+		//判断是否为同一类型
+		if (this.getClass() == obj.getClass()) {
+			//强制类型转换
+			TestObjectMethod testObjectMethod = (TestObjectMethod) obj;
+			//比较属性值
+			if (this.name.equals(testObjectMethod.getName()) && this.age == testObjectMethod.getAge()){
+				return true;
+			}
+		}
+		//或
+		if (obj instanceof TestObjectMethod){
+			//强制类型转换
+			TestObjectMethod testObjectMethod = (TestObjectMethod) obj;
+			//比较属性值
+			if (this.name.equals(testObjectMethod.getName()) && this.age == testObjectMethod.getAge()){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//重写finalize()方法
+	/**
+	 * @throws Throwable
+	 */
+	@Override
+	protected void finalize() throws Throwable {
+		System.out.println(this.name+"垃圾对象已被回收！");
+	}
+}
+
+class AboutJavaWrapperClass {
+	//包装类
+	/*
+	基本数据类型所对应的引用数据类型
+	Object类可统一所有数据，包装类的默认值是null
+	基本数据类型    包装类型
+	byte          Byte
+	short         Short
+	int           Integer
+	long          Long
+	float         Float
+	double        Double
+	boolean       Boolean
+	char          Character
+	* */
+	public static AboutJavaWrapperClass aboutJavaWrapperClass(){
+
+		return new AboutJavaWrapperClass();
+
+	}
+
+}
+
+class JavaGenerics{
+/*Java 泛型
+Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。
+泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。
+假定我们有这样一个需求：写一个排序方法，能够对整型数组、字符串数组甚至其他任何类型的数组进行排序，该如何实现？
+答案是可以使用 Java 泛型。
+使用 Java 泛型的概念，我们可以写一个泛型方法来对一个对象数组排序。然后，调用该泛型方法来对整型数组、浮点数数组、字符串数组等进行排序。
+
+
+
+
+泛型方法
+你可以写一个泛型方法，该方法在调用时可以接收不同类型的参数。根据传递给泛型方法的参数类型，编译器适当地处理每一个方法调用。
+
+下面是定义泛型方法的规则：
+
+所有泛型方法声明都有一个类型参数声明部分（由尖括号分隔），该类型参数声明部分在方法返回类型之前（在下面例子中的 <E>）。
+每一个类型参数声明部分包含一个或多个类型参数，参数间用逗号隔开。一个泛型参数，也被称为一个类型变量，是用于指定一个泛型类型名称的标识符。
+类型参数能被用来声明返回值类型，并且能作为泛型方法得到的实际参数类型的占位符。
+泛型方法体的声明和其他方法一样。注意类型参数只能代表引用型类型，不能是原始类型（像 int、double、char 等）。
+java 中泛型标记符：
+
+E - Element (在集合中使用，因为集合中存放的是元素)
+T - Type（Java 类）
+K - Key（键）
+V - Value（值）
+N - Number（数值类型）
+？ - 表示不确定的 java 类型
+
+
+
+有界的类型参数:
+可能有时候，你会想限制那些被允许传递到一个类型参数的类型种类范围。例如，一个操作数字的方法可能只希望接受Number或者Number子类的实例。这就是有界类型参数的目的。
+要声明一个有界的类型参数，首先列出类型参数的名称，后跟extends关键字，最后紧跟它的上界。
+*/
+
+/*泛型类
+泛型类的声明和非泛型类的声明类似，除了在类名后面添加了类型参数声明部分。
+和泛型方法一样，泛型类的类型参数声明部分也包含一个或多个类型参数，参数间用逗号隔开。一个泛型参数，也被称为一个类型变量，是用于指定一个泛型类型名称的标识符。因为他们接受一个或多个参数，这些类被称为参数化的类或参数化的类型。
+
+
+*/
+
+
+	public static JavaGenerics javaGenerics(){
+		// 创建不同类型数组： Integer, Double 和 Character
+		Integer[] intArray = { 1, 2, 3, 4, 5 };
+		Double[] doubleArray = { 1.1, 2.2, 3.3, 4.4 };
+		Character[] charArray = { 'H', 'E', 'L', 'L', 'O' };
+
+		System.out.println( "整型数组元素为:" );
+		printArray( intArray  ); // 传递一个整型数组
+
+		System.out.println( "\n双精度型数组元素为:" );
+		printArray( doubleArray ); // 传递一个双精度型数组
+
+		System.out.println( "\n字符型数组元素为:" );
+		printArray( charArray ); // 传递一个字符型数组
+
+		System.out.println("————————————————————————————————————————————————");
+
+		//有界的参数类型
+		System.out.printf( "%d, %d 和 %d 中最大的数为 %d\n\n",
+				3, 4, 5, maximum( 3, 4, 5 ) );
+
+		System.out.printf( "%.1f, %.1f 和 %.1f 中最大的数为 %.1f\n\n",
+				6.6, 8.8, 7.7, maximum( 6.6, 8.8, 7.7 ) );
+
+		System.out.printf( "%s, %s 和 %s 中最大的数为 %s\n","pear", "apple", "orange", maximum( "pear", "apple", "orange" ) );
+
+		System.out.println("————————————————————————————————————————————————");
+
+		/*类型通配符
+		1、类型通配符一般是使用 ? 代替具体的类型参数。例如 List<?> 在逻辑上是 List<String>,List<Integer> 等所有 List<具体类型实参> 的父类。
+		2、类型通配符上限通过形如List来定义，如此定义就是通配符泛型值接受Number及其下层子类类型。
+		3、类型通配符下限通过形如 List<? super Number> 来定义，表示类型只能接受 Number 及其上层父类类型，如 Object 类型的实例。
+		*/
+		List<String> name = new ArrayList<String>();
+		List<Integer> age = new ArrayList<Integer>();
+		List<Number> number = new ArrayList<Number>();
+
+		name.add("icon");
+		age.add(18);
+		number.add(314);
+
+		getData(name);
+		getData(age);
+		getData(number);
+		//解析： 因为 getData() 方法的参数是 List<?> 类型的，所以 name，age，number1 都可以作为这个方法的实参，这就是通配符的作用。
+
+		List<String> name1 = new ArrayList<String>();
+		List<Integer> age1 = new ArrayList<Integer>();
+		List<Number> number1 = new ArrayList<Number>();
+
+		name.add("icon");
+		age.add(18);
+		number1.add(314);
+
+		//getUperNumber(name1);//1
+		//getUperNumber(age1);//2
+		//getUperNumber(number1);//3
+		//解析： 在 //1 处会出现错误，因为 getUperNumber() 方法中的参数已经限定了参数泛型上限为 Number，所以泛型为 String 是不在这个范围之内，所以会报错
+
+		System.out.println("————————————————————————————————————————————————");
+		return new JavaGenerics();
+	}
+
+	// 泛型方法 printArray
+	public static < E > void printArray( E[] inputArray )
+	{
+		// 输出数组元素
+		for ( E element : inputArray ){
+			System.out.printf( "%s ", element );
+		}
+		System.out.println();
+	}
+
+	//有界的参数类型
+	public static <T extends Comparable<T>> T maximum(T x, T y, T z)
+	{
+		T max = x; // 假设x是初始最大值
+		if ( y.compareTo( max ) > 0 ){
+			max = y; //y 更大
+		}
+		if ( z.compareTo( max ) > 0 ){
+			max = z; // 现在 z 更大
+		}
+		return max; // 返回最大对象
+	}
+
+
+	//类型通配符
+	public static void getData(List<?> data) {
+		try{
+			System.out.println("data :" + data.get(0));
+		}catch (Throwable throwable){
+			System.out.println("IndexOutOfBoundsException");
+		}
+
+	}
+
+	public static void getUperNumber(List<? extends Number> data) {
+		try{
+			System.out.println("data :" + data.get(0));
+		}catch (Throwable throwable){
+			System.out.println("IndexOutOfBoundsException");
+		}
+	}
+}
+
+
+//泛型类
+class JavaGenericsClass<T> {
+
+	private T t;
+
+	public void add(T t) {
+		this.t = t;
+	}
+
+	public T get() {
+		return t;
+	}
+
+	public static JavaGenericsClass javaGenericsClass()  {
+		JavaGenericsClass<Integer> integerJavaGenericsClass = new JavaGenericsClass<Integer>();
+		JavaGenericsClass<String> stringJavaGenericsClass = new JavaGenericsClass<String>();
+
+		integerJavaGenericsClass.add(new Integer(10));
+		stringJavaGenericsClass.add(new String("菜鸟教程"));
+
+		System.out.printf("整型值为 :%d\n\n", integerJavaGenericsClass.get());
+		System.out.printf("字符串为 :%s\n", stringJavaGenericsClass.get());
+
+		System.out.println("————————————————————————————————————————————————");
+		return new JavaGenericsClass();
+	}
+}
+
 
 class NumberAndMath {
 /*
