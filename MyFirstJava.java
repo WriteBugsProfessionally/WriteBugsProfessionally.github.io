@@ -93,6 +93,7 @@ package com.WriteBugsProfessionally.Java.Study;
  IDE：Eclipse、 IntelliJ IDEA、NetBeans 等。*/
 //import org.omg.CORBA.Object;
 
+import javax.swing.plaf.BorderUIResource;
 import javax.swing.text.rtf.RTFEditorKit;
 import java.util.*;
 import java.lang.*;
@@ -1382,6 +1383,8 @@ public class MyFirstJava {
 		AboutJavaWrapperClass.aboutJavaWrapperClass();
 
 		JavaEnum.javaEnum();
+
+		JavaOverrideAndOverload.javaOverrideAndOverload();
 		//TestObjectMethod.
 	}
 	public void run(){
@@ -5525,20 +5528,91 @@ class AboutJavaWrapperClass {
 		* short                               shortValue() 返回指定号码作为值 short ，这可能涉及舍入或截断。
 		* */
 
+		/*
+		雷诺个性转换也装箱拆箱
+		·8种包装类提供不同类型间的转换方式：
+		·Number父类中提供的6个共性方法。
+		·parseXXX()静态方法。
+		·valueOf()静态方法。
+		·注意：需保证类型兼容，否则抛出NumberFormatException异常。
+		*/
+		System.out.println("装箱与拆箱：");
 		int num = 10;
+		//jdk1.5之前的装箱、拆箱方法
 		//装箱
 		Integer integer = new Integer(num);
 		Integer integer1 = Integer.valueOf(num);
+		System.out.println(integer);
+		System.out.println(integer1);
 		//拆箱
 		Integer integer2 = new Integer(100);
 		int i = integer2.intValue();
 		System.out.println(i);
+
+
+		//jdk1.5之后支持自动装箱、拆箱
+		//自动装箱
+		Integer integer3 = num;
+		System.out.println(integer3);
+		//自动拆箱
+		int num1 = integer3;
+		System.out.println(num1);
 
 		Integer x = 5;
 		x =  x + 10;
 		System.out.println(x);
 		//当 x 被赋为整型值时，由于x是一个对象，所以编译器要对x进行装箱。然后，为了使x能进行加运算，所以要对x进行拆箱。
 
+		System.out.println("————————————————————————————————————————————————");
+
+		//基本类型与字符串之间的转换
+		//1.基本类型转换成字符串
+		int s = 100;
+		//(1)使用“+”
+		String s1 = s+"";
+		System.out.println(s1);
+		//(2)Integer中的toString()方法
+		String s2 = Integer.toString(s);
+		String s3 = Integer.toString(s,16);//后面的radix相当于进制
+		System.out.println(Integer.toBinaryString(s));//二进制
+		System.out.println(Integer.toOctalString(s));//八进制
+		System.out.println(Integer.toHexString(s));//十六进制
+
+		System.out.println(s2);
+		System.out.println(s3);
+
+		//2，字符串转换为基本类型
+		String s4 = "你好啊！";//该字符串不可用
+		String s5 = "167";
+		//使用Integer中的parseXXX()方法
+		try {
+			System.out.println(Integer.parseInt(s4));//NumberFormatException数字格式异常
+		}catch (Throwable throwable){
+			System.out.println("数字格式异常!");
+		}
+		System.out.println(Integer.parseInt(s5));
+		//boolean字符串形式转成基本类型"ture"——>ture,其他为false
+		String str = "true";
+		boolean b = Boolean.parseBoolean(str);
+		System.out.println(b);
+		System.out.println(Boolean.parseBoolean(s4));//拿上面的字符串举例
+
+		System.out.println("————————————————————————————————————————————————");
+
+		//Integer缓冲区
+		Integer integer4 = new Integer(100);
+		Integer integer5 = new Integer(100);
+		System.out.println(integer4 == integer5);//false
+
+		Integer integer6 = 100;//自动装箱
+		Integer integer7 = 100;
+		System.out.println(integer6 == integer7);//true
+
+		Integer integer8 = 200;
+		Integer integer9 = 200;//自动装箱
+		System.out.println(integer8 == integer9);//false
+
+		System.out.println("————————————————————————————————————————————————");
 		return new AboutJavaWrapperClass();
 
 	}
@@ -5590,7 +5664,8 @@ class JavaEnum{
 
 
 	public static JavaEnum javaEnum(){
-		ColorEnum c1 = ColorEnum.Red;
+		System.out.println("Java枚举：");
+		 ColorEnum c1 = ColorEnum.Red;
 		System.out.println(c1);
 		//每个枚举都是通过 Class 在内部实现的，且所有的枚举值都是 public static final 的。
 
@@ -5640,7 +5715,7 @@ class JavaEnum{
 		}
 
 		// 使用 valueOf() 返回枚举常量，不存在的会报错 IllegalArgumentException
-		System.out.println(ColorEnum.valueOf("RED"));
+		System.out.println(ColorEnum.valueOf("Red"));
 		// System.out.println(Color.valueOf("WHITE"));
 
 		/*枚举类成员
@@ -5654,6 +5729,7 @@ class JavaEnum{
 		for (Color c:Color.values()){
 			System.out.print(c.getColor() + "、");
 		}
+		System.out.println("\n"+"————————————————————————————————————————————————");
 		return new JavaEnum();
 	}
 	static class ColorClass{
@@ -5951,6 +6027,7 @@ class JavaOverrideAndOverload {
 在面向对象原则里，重写意味着可以重写任何现有方法。*/
 
 	public static JavaOverrideAndOverload javaOverrideAndOverload() {
+		System.out.println("重写与重载：");
 		Animal a = new Animal(); // Animal 对象
 		Animal b = new Dog(); // Dog 对象
 
@@ -6569,7 +6646,6 @@ String toString()
 		return  new TestGregorianCalendar();
 	}
 }
-
 
 class TestRegularExpression{
 //正则表达式
