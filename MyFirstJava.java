@@ -93,6 +93,7 @@ package com.WriteBugsProfessionally.Java.Study;
  IDE：Eclipse、 IntelliJ IDEA、NetBeans 等。*/
 //import org.omg.CORBA.Object;
 
+import javax.swing.text.rtf.RTFEditorKit;
 import java.util.*;
 import java.lang.*;
 import java.text.*;
@@ -1378,6 +1379,9 @@ public class MyFirstJava {
 
 		JavaGenericsClass.javaGenericsClass();
 
+		AboutJavaWrapperClass.aboutJavaWrapperClass();
+
+		JavaEnum.javaEnum();
 		//TestObjectMethod.
 	}
 	public void run(){
@@ -5503,8 +5507,37 @@ class AboutJavaWrapperClass {
 	double        Double
 	boolean       Boolean
 	char          Character
+	这种由编译器特别支持的包装称为装箱，所以当内置数据类型被当作对象使用的时候，编译器会把内置类型装箱为包装类。相似的，编译器也可以把一个对象拆箱为内置类型。Number 类属于 java.lang 包。
 	* */
 	public static AboutJavaWrapperClass aboutJavaWrapperClass(){
+		//类型转换与装箱、拆箱
+		/*
+		* 基本数据类型都存储在栈空间里
+		* 将基本数据类型从栈里放到堆里，相当于把基本类型转成一个对象，这个过程就叫做装箱
+		* 拆箱即相反，将基本数据类型从堆里放到栈里，相当于把一个对象转成基本数据类型
+		* 拆箱
+		* 修饰符和类型                          方法和说明
+		* byte                                byteValue() 返回指定号码作为值 byte ，这可能涉及舍入或截断。
+		* abstract double                     doubleValue() 返回指定数字的值为 double ，可能涉及四舍五入。
+		* abstract float                      floatValue() 返回指定数字的值为 float ，可能涉及四舍五入。
+		* abstract int                        intValue() 返回指定号码作为值 int ，这可能涉及舍入或截断。
+		* abstract long                       longValue() 返回指定数字的值为 long ，可能涉及四舍五入或截断。
+		* short                               shortValue() 返回指定号码作为值 short ，这可能涉及舍入或截断。
+		* */
+
+		int num = 10;
+		//装箱
+		Integer integer = new Integer(num);
+		Integer integer1 = Integer.valueOf(num);
+		//拆箱
+		Integer integer2 = new Integer(100);
+		int i = integer2.intValue();
+		System.out.println(i);
+
+		Integer x = 5;
+		x =  x + 10;
+		System.out.println(x);
+		//当 x 被赋为整型值时，由于x是一个对象，所以编译器要对x进行装箱。然后，为了使x能进行加运算，所以要对x进行拆箱。
 
 		return new AboutJavaWrapperClass();
 
@@ -5512,6 +5545,123 @@ class AboutJavaWrapperClass {
 
 }
 
+class JavaEnum{
+	/*Java 枚举(enum)
+	Java 枚举是一个特殊的类，一般表示一组常量，比如一年的 4 个季节，一个年的 12 个月份，一个星期的 7 天，方向有东南西北等。
+	Java 枚举类使用 enum 关键字来定义，各个常量使用逗号 , 来分割。
+
+例如定义一个颜色的枚举类。*/
+	 enum ColorEnum {
+		Red,Green,Blue,Black;
+
+		// 构造函数
+		ColorEnum()
+		{
+			System.out.println("Constructor called for : " + this.toString());
+		}
+
+		public void colorInfo()
+		{
+			System.out.println("Universal Color");
+		}
+
+	}
+
+
+	//枚举类中的抽象方法实现，需要枚举类中的每个对象都对其进行实现。
+	enum Color{
+		RED{
+			public String getColor(){//枚举对象实现抽象方法
+				return "红色";
+			}
+		},
+		GREEN{
+			public String getColor(){//枚举对象实现抽象方法
+				return "绿色";
+			}
+		},
+		BLUE{
+			public String getColor(){//枚举对象实现抽象方法
+				return "蓝色";
+			}
+		};
+		public abstract String getColor();//定义抽象方法
+	}
+
+
+	public static JavaEnum javaEnum(){
+		ColorEnum c1 = ColorEnum.Red;
+		System.out.println(c1);
+		//每个枚举都是通过 Class 在内部实现的，且所有的枚举值都是 public static final 的。
+
+		//迭代枚举元素
+		//可以使用 for 语句来迭代枚举元素：
+		for (ColorEnum var:ColorEnum.values()) {
+			System.out.println(var);
+		}
+
+		//在 switch 中使用枚举类
+		//枚举类常应用于 switch 语句中：
+
+		ColorEnum Blue = ColorEnum.Blue;
+		switch (Blue){
+			case Red:
+				System.out.println("Red");
+				break;
+			case Blue:
+				System.out.println("Blue");
+				break;
+			case Black:
+				System.out.println("Black");
+				break;
+			case Green:
+				System.out.println("Green");
+				break;
+		}
+
+
+		/*values(), ordinal() 和 valueOf() 方法
+		enum 定义的枚举类默认继承了 java.lang.Enum 类，并实现了 java.lang.Serializable 和 java.lang.Comparable 两个接口。
+		values(), ordinal() 和 valueOf() 方法位于 java.lang.Enum 类中：
+
+		values() 返回枚举类中所有的值.
+		ordinal()方法可以找到每个枚举常量的索引，就像数组索引一样。
+		valueOf()方法返回指定字符串值的枚举常量。
+		*/
+
+		// 调用 values()
+		ColorEnum[] arr = ColorEnum.values();
+
+		// 迭代枚举
+		for (ColorEnum col : arr)
+		{
+			// 查看索引
+			System.out.println(col + " at index " + col.ordinal());
+		}
+
+		// 使用 valueOf() 返回枚举常量，不存在的会报错 IllegalArgumentException
+		System.out.println(ColorEnum.valueOf("RED"));
+		// System.out.println(Color.valueOf("WHITE"));
+
+		/*枚举类成员
+		枚举跟普通类一样可以用自己的变量、方法和构造函数，构造函数只能使用 private 访问修饰符，所以外部无法调用。
+		枚举既可以包含具体方法，也可以包含抽象方法。 如果枚举类具有抽象方法，则枚举类的每个实例都必须实现它。*/
+
+		ColorEnum c2 = ColorEnum.Red;
+		System.out.println(c2);
+		c2.colorInfo();
+
+		for (Color c:Color.values()){
+			System.out.print(c.getColor() + "、");
+		}
+		return new JavaEnum();
+	}
+	static class ColorClass{
+		public static final ColorClass RED = new ColorClass();
+		public static final ColorClass BLUE = new ColorClass();
+		public static final ColorClass GREEN = new ColorClass();
+	}
+}
 class JavaGenerics{
 /*Java 泛型
 Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。
@@ -5681,7 +5831,7 @@ class JavaGenericsClass<T> {
 		JavaGenericsClass<String> stringJavaGenericsClass = new JavaGenericsClass<String>();
 
 		integerJavaGenericsClass.add(new Integer(10));
-		stringJavaGenericsClass.add(new String("菜鸟教程"));
+		stringJavaGenericsClass.add(new String("文本文本文本文本文本文本文本文本文本文本文本文本"));
 
 		System.out.printf("整型值为 :%d\n\n", integerJavaGenericsClass.get());
 		System.out.printf("字符串为 :%s\n", stringJavaGenericsClass.get());
@@ -5693,6 +5843,11 @@ class JavaGenericsClass<T> {
 
 
 class NumberAndMath {
+/*Java Math 类
+Java 的 Math 包含了用于执行基本数学运算的属性和方法，如初等指数、对数、平方根和三角函数。
+Math 的方法都被定义为 static 形式，通过 Math 类可以在主函数中直接调用。*/
+
+
 /*
 Math 的 floor,round 和 ceil 方法实例比较
 参数	Math.floor	Math.round	Math.ceil
@@ -5703,6 +5858,64 @@ Math 的 floor,round 和 ceil 方法实例比较
 -1.5	-2	       -1	       -1
 -1.6	-2	       -2	       -1
 */
+
+/*Number & Math 类方法
+Number & Math 类常用的一些方法：
+1	xxxValue()
+将 Number 对象转换为xxx数据类型的值并返回。
+2	compareTo()
+将number对象与参数比较。
+3	equals()
+判断number对象是否与参数相等。
+4	valueOf()
+返回一个 Number 对象指定的内置数据类型
+5	toString()
+以字符串形式返回值。
+6	parseInt()
+将字符串解析为int类型。
+7	abs()
+返回参数的绝对值。
+8	ceil()
+返回大于等于( >= )给定参数的的最小整数，类型为双精度浮点型。
+9	floor()
+返回小于等于（<=）给定参数的最大整数 。
+10	rint()
+返回与参数最接近的整数。返回类型为double。
+11	round()
+它表示四舍五入，算法为 Math.floor(x+0.5)，即将原来的数字加上 0.5 后再向下取整，所以，Math.round(11.5) 的结果为12，Math.round(-11.5) 的结果为-11。
+12	min()
+返回两个参数中的最小值。
+13	max()
+返回两个参数中的最大值。
+14	exp()
+返回自然数底数e的参数次方。
+15	log()
+返回参数的自然数底数的对数值。
+16	pow()
+返回第一个参数的第二个参数次方。
+17	sqrt()
+求参数的算术平方根。
+18	sin()
+求指定double类型参数的正弦值。
+19	cos()
+求指定double类型参数的余弦值。
+20	tan()
+求指定double类型参数的正切值。
+21	asin()
+求指定double类型参数的反正弦值。
+22	acos()
+求指定double类型参数的反余弦值。
+23	atan()
+求指定double类型参数的反正切值。
+24	atan2()
+将笛卡尔坐标转换为极坐标，并返回极坐标的角度值。
+25	toDegrees()
+将参数转化为角度。
+26	toRadians()
+将角度转换为弧度。
+27	random()
+返回一个随机数。*/
+
 	public static NumberAndMath numberAndMath(){
 
 		double[] nums = {1.4, 1.5, 1.6, -1.4, -1.5, -1.6};
@@ -5712,6 +5925,15 @@ Math 的 floor,round 和 ceil 方法实例比较
 
 		System.out.println("————————————————————————————————————————————————");
 
+		System.out.println("90 度的正弦值：" + Math.sin(Math.PI/2));
+		System.out.println("0度的余弦值：" + Math.cos(0));
+		System.out.println("60度的正切值：" + Math.tan(Math.PI/3));
+		System.out.println("1的反正切值： " + Math.atan(1));
+		System.out.println("π/2的角度值：" + Math.toDegrees(Math.PI/2));
+		System.out.println(Math.PI);
+
+
+		System.out.println("————————————————————————————————————————————————");
 		return new NumberAndMath();
 	}
 	private static void test(double num) {
@@ -5721,6 +5943,112 @@ Math 的 floor,round 和 ceil 方法实例比较
 	}
 }
 
+class JavaOverrideAndOverload {
+/*重写(Override)
+重写是子类对父类的允许访问的方法的实现过程进行重新编写, 返回值和形参都不能改变。即外壳不变，核心重写！
+重写的好处在于子类可以根据需要，定义特定于自己的行为。 也就是说子类能够根据需要实现父类的方法。
+重写方法不能抛出新的检查异常或者比被重写方法申明更加宽泛的异常。例如： 父类的一个方法申明了一个检查异常 IOException，但是在重写这个方法的时候不能抛出 Exception 异常，因为 Exception 是 IOException 的父类，抛出 IOException 异常或者 IOException 的子类异常。
+在面向对象原则里，重写意味着可以重写任何现有方法。*/
+
+	public static JavaOverrideAndOverload javaOverrideAndOverload() {
+		Animal a = new Animal(); // Animal 对象
+		Animal b = new Dog(); // Dog 对象
+
+		a.move();// 执行 Animal 类的方法
+
+		b.move();//执行 Dog 类的方法;
+		/*在上面的例子中可以看到，尽管 b 属于 Animal 类型，但是它运行的是 Dog 类的 move方法。
+		这是由于在编译阶段，只是检查参数的引用类型。
+		然而在运行时，Java 虚拟机(JVM)指定对象的类型并且运行该对象的方法。
+		因此在上面的例子中，之所以能编译成功，是因为 Animal 类中存在 move 方法，然而运行时，运行的是特定对象的方法。
+		*/
+
+
+		/*方法的重写规则
+		参数列表与被重写方法的参数列表必须完全相同。
+		返回类型与被重写方法的返回类型可以不相同，但是必须是父类返回值的派生类（java5 及更早版本返回类型要一样，java7 及更高版本可以不同）。
+		访问权限不能比父类中被重写的方法的访问权限更低。例如：如果父类的一个方法被声明为 public，那么在子类中重写该方法就不能声明为 protected。
+		父类的成员方法只能被它的子类重写。
+		声明为 final 的方法不能被重写。
+		声明为 static 的方法不能被重写，但是能够被再次声明。
+		子类和父类在同一个包中，那么子类可以重写父类所有方法，除了声明为 private 和 final 的方法。
+		子类和父类不在同一个包中，那么子类只能够重写父类的声明为 public 和 protected 的非 final 方法。
+		重写的方法能够抛出任何非强制异常，无论被重写的方法是否抛出异常。但是，重写的方法不能抛出新的强制性异常，或者比被重写方法声明的更广泛的强制性异常，反之则可以。
+		构造方法不能被重写。
+		如果不能继承一个类，则不能重写该类的方法。
+		*/
+
+		System.out.println("————————————————————————————————————————————————");
+
+		/*重载(Overload)
+		重载(overloading) 是在一个类里面，方法名字相同，而参数不同。返回类型可以相同也可以不同。
+		每个重载的方法（或者构造函数）都必须有一个独一无二的参数类型列表。
+		最常用的地方就是构造器的重载。
+
+		重载规则:
+		被重载的方法必须改变参数列表(参数个数或类型不一样)；
+		被重载的方法可以改变返回类型；
+		被重载的方法可以改变访问修饰符；
+		被重载的方法可以声明新的或更广的检查异常；
+		方法能够在同一个类中或者在一个子类中被重载。
+		无法以返回值类型作为重载函数的区分标准。*/
+		Overloading o = new Overloading();
+		System.out.println(o.test());
+		o.test(1);
+		System.out.println(o.test(1,"test3"));
+		System.out.println(o.test("test4",1));
+		/*重写与重载之间的区别
+		区别点	重载方法	重写方法
+		参数列表	必须修改	一定不能修改
+		返回类型	可以修改	一定不能修改
+		异常	    可以修改	可以减少或删除，一定不能抛出新的或者更广的异常
+		访问	    可以修改	一定不能做更严格的限制（可以降低限制）
+
+		总结
+		方法的重写(Overriding)和重载(Overloading)是java多态性的不同表现，重写是父类与子类之间多态性的一种表现，重载可以理解成多态的具体表现形式。
+		(1)方法重载是一个类中定义了多个方法名相同,而他们的参数的数量不同或数量相同而类型和次序不同,则称为方法的重载(Overloading)。
+		(2)方法重写是在子类存在方法与父类的方法的名字相同,而且参数的个数与类型一样,返回值也一样的方法,就称为重写(Overriding)。
+		(3)方法重载是一个类的多态性表现,而方法重写是子类与父类的一种多态性表现。
+		*/
+
+		return new JavaOverrideAndOverload();
+
+	}
+
+	static class Animal {
+		public void move() {
+			System.out.println("动物可以移动");
+		}
+	}
+
+	static class Dog extends JavaOverrideAndOverload.Animal {
+		public void move() {
+			System.out.println("狗可以跑和走");
+		}
+	}
+
+	public static class Overloading {
+		public int test() {
+			System.out.println("test1");
+			return 1;
+		}
+
+		public void test(int a) {
+			System.out.println("test2");
+		}
+
+		//以下两个参数类型顺序不同
+		public String test(int a, String s) {
+			System.out.println("test3");
+			return "returntest3";
+		}
+
+		public String test(String s, int a) {
+			System.out.println("test4");
+			return "returntest4";
+		}
+	}
+}
 class DateTest {
 	/*
         DateTest 对象创建以后，可以调用下面的方法。
