@@ -1,0 +1,196 @@
+ * {
+     margin: 0px;
+     padding: 0px;
+ }
+ /*初始化(清除内外边距)*/
+ 
+ body {
+     /* background-image: url("https://img2.baidu.com/it/u=1228157205,3523693194&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"); */
+     /* background-image: url("https://img2.baidu.com/it/u=2534798438,2886760618&fm=253&fmt=auto&app=138&f=JPEG?w=900&h=300"); */
+     background-image: url("https://static.codemao.cn/coco/player/unstable/rkrANBgLq.image/jpeg?hash=FlHYlWdCvUwckiaib9dbINzzn5Hts");
+     background-position: 50% 50%;
+     background-attachment: fixed;
+     background-repeat: no-repeat;
+     background-size: cover;
+     -moz-background-size: cover;
+     -webkit-background-size: cover;
+     /*不重复排列*/
+     color: white;
+     font-size: small;
+     overflow: auto;
+ }
+ 
+ a {
+     text-decoration: none;
+ }
+ /*去掉a链接的下划线*/
+ 
+ .top {
+     width: 100%;
+     height: 100px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     background-image: url("https://static.codemao.cn/coco/player/unstable/SkRFHrgL9.image/jpeg?hash=Fgn7uduD1eBO2jWb7_7ZMAX6hnvR");
+     /* background-image: url("https://img2.baidu.com/it/u=1228157205,3523693194&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"); */
+     background-size: cover;
+     /* background-image: url("https://img0.baidu.com/it/u=3373600917,3363390770&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800");*/
+     position: -webkit-sticky;
+     position: sticky;
+     top: 0;
+ }
+ 
+ .tx {
+     margin: 10px;
+     width: 50px;
+     height: 50px;
+     border-radius: 25px;
+ }
+ 
+ #nav {
+     width: 80%;
+     margin-left: 20px;
+     display: flex;
+     justify-content: flex-end;
+ }
+ 
+ .nav {
+     margin: 35px;
+     display: inline;
+     list-style: none;
+     border-radius: 15px;
+ }
+ 
+ .nav>a {
+     color: #FFF;
+     margin: 10px;
+ }
+ 
+ .nav:hover {
+     background-color: rgb(0, 153, 255);
+ }
+ 
+ .nav>a:hover {
+     color: rgb(26, 215, 130);
+     border-radius: 15px;
+ }
+ 
+ .text {
+     width: 300px;
+     text-align: center;
+     line-height: 45px;
+     margin: auto;
+     background-color: rgba(0, 91, 203, 0.6);
+     margin-top: 20px;
+     margin-bottom: 20px;
+     border-radius: 10%;
+     box-shadow: 7px 7px 13px rgb(4, 0, 65);
+ }
+ 
+ .English,
+ .Chinese {
+     list-style: none;
+ }
+ /*谷歌字体*/
+ 
+ .English {
+     font-family: "Sofia";
+ }
+ 
+ @font-face {
+     font-family: 'Sofia';
+     font-style: normal;
+     font-weight: 400;
+     src: url(https://fonts.gstatic.com/s/sofia/v12/8QIHdirahM3j_su5uI0Orbjl.woff2) format('woff2');
+     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+ }
+ 
+ .dropbtn {
+     font-size: medium;
+     color: white;
+     font-size: small;
+     border: none;
+     cursor: pointer;
+     background-color: rgba(0, 0, 0, 0);
+ }
+ 
+ .dropdown {
+     position: relative;
+     display: inline-block;
+ }
+ 
+ .dropdown-content {
+     display: none;
+     position: absolute;
+     min-width: 160px;
+     box-shadow: rgba(0, 0, 0, 0.2);
+     background-color: #FFF;
+ }
+ 
+ .dropdown-content a {
+     color: black;
+     text-decoration: none;
+     display: block;
+ }
+ 
+ .dropdown-content a:hover {
+     background-color: rgb(113, 113, 113);
+ }
+ 
+ .dropdown:hover .dropdown-content {
+     display: block;
+ }
+ 
+ .dropdown:hover .dropbtn {
+     background-color: rgb(0, 153, 255);
+     color: rgb(26, 215, 130);
+     border-radius: 15px;
+ }
+ 
+ .bottom {
+     background-image: url("https://static.codemao.cn/coco/player/unstable/S1k4tSxUc.image/jpeg?hash=FjK_lpHVcgR5k4uSxPV-NIEo77VX");
+     width: 100%;
+     height: 100px;
+     text-align: center;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+ 
+ .bottom>img {
+     justify-self: flex-start;
+ }
+ 
+ .bottomText>div>a {
+     color: #FFF;
+ }
+ 
+ .bottomText>div>a:hover {
+     color: rgb(26, 215, 130);
+ }
+ 
+ @font-face {
+    font-family: 'Pacifico';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Pacifico Regular'), local('Pacifico-Regular'), url(https://fonts.gstatic.com/s/pacifico/v12/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2) format('woff2');
+    font-display: swap;
+  }
+ 
+ @media(max-width:920px) {
+     .nav {
+         margin: 0px;
+     }
+     #nav {
+         font-size: 8px;
+     }
+     body {
+         font-size: 12px;
+     }
+     .dropbtn {
+         font-size: 8px;
+     }
+     .top {
+         display: flex;
+     }
+ }

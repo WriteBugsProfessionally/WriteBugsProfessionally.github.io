@@ -1,0 +1,45 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.search{
+    background-color: rgb(211, 211, 211);
+    width: 500px;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction:row;
+}
+
+.from{
+    width: 80%;
+    height: 100%;
+}
+
+.searchInputDiv{
+    height: 100%;
+    display: inline;
+}
+
+.searchInput{
+    background-color: rgb(211, 211, 211);
+    border-radius: 25px;
+    height: 100%;
+    margin-left: 20px;
+    border: none;
+    outline: none;
+    align-items: center;
+}
+
+.searchButtonDiv{
+    display: inline-block;
+    background-color: rgb(211, 211, 211);
+    height: 100%;
+    width: 20%;
+}
+
+.searchButton{
+    border: none;
+    outline: none;
+}
