@@ -1,7 +1,0 @@
-.venv/
-build/
-dist/
-bin/
-__pycache__/
-*.pyc
-selftest.json
