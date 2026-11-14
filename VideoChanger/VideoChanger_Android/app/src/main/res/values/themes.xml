@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Compose 负责实际样式，这里只保证启动时没有 ActionBar 和多余背景 -->
-    <style name="Theme.VideoChanger" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowBackground">@android:color/white</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
-</resources>
