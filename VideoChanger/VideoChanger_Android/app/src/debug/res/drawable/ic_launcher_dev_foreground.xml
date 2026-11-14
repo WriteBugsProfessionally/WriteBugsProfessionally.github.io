@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 开发版专用图标：紫色底 + 白色下载箭头，和正式版的黑白 Logo 区分。 -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M50,27h8v27.17l9.59,-9.58L73,50 54,69 35,50l5.41,-5.41L50,54.17z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M35,77h38v6H35z" />
+</vector>
